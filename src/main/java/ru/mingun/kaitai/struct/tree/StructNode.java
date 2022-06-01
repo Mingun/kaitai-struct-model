@@ -154,9 +154,12 @@ public class StructNode extends ChunkNode {
    */
   private ChunkNode create(Method getter) throws ReflectiveOperationException {
     final Object field = getter.invoke(value);
-    final String name  = getter.getName();
-    if (field == null || !attrStart.containsKey(name) || !attrEnd.containsKey(name)) {
+    if (field == null) {
         return new SimpleNode(name, null, this, 0, 0, 0);
+    }
+    final String name = getter.getName();
+    if (!attrStart.containsKey(name) || !attrEnd.containsKey(name)) {
+        return new SimpleNode(name, field, this, 0, 0, 0);
     }
     final int s = attrStart.get(name);
     final int e = attrEnd.get(name);
