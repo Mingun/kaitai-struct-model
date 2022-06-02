@@ -154,15 +154,9 @@ public class StructNode extends ChunkNode {
    */
   private ChunkNode create(Method getter) throws ReflectiveOperationException {
     final Object field = getter.invoke(value);
-    if (field == null) {
-        return new SimpleNode(name, null, this, 0, 0, 0);
-    }
     final String name = getter.getName();
-    if (!attrStart.containsKey(name) || !attrEnd.containsKey(name)) {
-        return new SimpleNode(name, field, this, 0, 0, 0);
-    }
-    final int s = attrStart.get(name);
-    final int e = attrEnd.get(name);
+    final int s = attrStart.getOrDefault(name, -1);
+    final int e = attrEnd.getOrDefault(name, -1);
     if (List.class.isAssignableFrom(getter.getReturnType())) {
       final List<Integer> sa = arrStart.get(name);
       final List<Integer> se = arrEnd.get(name);
