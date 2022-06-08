@@ -64,6 +64,8 @@ public class ListNode extends ChunkNode {
   @Override
   public List<?> getValue() { return value; }
 
+  public Class<?> getElementClass() { return elementClass; }
+
   //<editor-fold defaultstate="collapsed" desc="TreeNode">
   @Override
   public ChunkNode getChildAt(int childIndex) { return init().get(childIndex); }
