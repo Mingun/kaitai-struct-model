@@ -49,6 +49,9 @@ public abstract class ValueNode implements TreeNode {
    */
   public abstract Object getValue();
 
+  /** Returns the node name. */
+  public String getName(){ return name; }
+
   //<editor-fold defaultstate="collapsed" desc="TreeNode">
   @Override
   public TreeNode getParent() { return parent; }
